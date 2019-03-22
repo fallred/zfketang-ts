@@ -1,10 +1,10 @@
 import * as React from 'react';
 import './index.less';
-import {connect} from 'react-redux';
+// import {connect} from 'react-redux';
 import {CSSTransition,TransitionGroup} from 'react-transition-group';
-import store from '../../../../store';
-import {Store,Home} from '../../../../types';
-import actions from "../../../../store/actions/home";
+// import store from '../../../../store';
+// import {Store,Home} from '../../../../types';
+// import actions from "../../../../store/actions/home";
 const logo = require('../../../../../images/logo.png');
 interface IProps {
     category: string,
@@ -13,7 +13,7 @@ interface IProps {
 interface IState {
     showList:boolean
 }
-class HomeHeader extends React.Component<IProps,IState> {
+export default class HomeHeader extends React.Component<IProps,IState> {
     state = {
         showList: false
     }
@@ -66,7 +66,7 @@ class HomeHeader extends React.Component<IProps,IState> {
         );
     }
 }
-export default connect(
-    (state:Store):Home=> state.home,
-    actions
-)(HomeHeader)
+// export default connect(
+//     (state:Store):Home=> state.home,
+//     actions
+// )(HomeHeader)

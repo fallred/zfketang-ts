@@ -4,7 +4,9 @@ export interface Store {
     home: Home
 }
 export interface Home {
-    category:string
+    //当前分页
+    category?: string,
+    sliders?: string[]
 }
 export interface Counter1 {
     number:number
