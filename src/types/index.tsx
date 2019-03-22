@@ -4,7 +4,7 @@ export interface Store {
     home: Home
 }
 export interface Home {
-    currentCategory:string
+    category:string
 }
 export interface Counter1 {
     number:number
