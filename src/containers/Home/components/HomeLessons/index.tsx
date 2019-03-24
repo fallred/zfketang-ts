@@ -26,9 +26,8 @@ export default class HomeLessons extends React.Component<IProps> {
                 }
                 {
                     loading ? <Loading /> :
-                    (hasMore ? <div
-                        onClick={this.props.getLessons}
-                        className="load-more">加载更多</div>:null)
+                    (!hasMore && <div
+                        className="load-more">我是有底线的</div>)
                 }
             </div>
         );

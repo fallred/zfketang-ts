@@ -5,7 +5,7 @@ import {Store,Home} from '../../types';
 import actions from '../../store/actions/home';
 import HomeSwiper from '../../containers/Home/components/HomeSwiper';
 import HomeLessons from '../../containers/Home/components/HomeLessons';
-import { loadMore } from '../../utils';
+import { loadMore,downRefresh } from '../../utils';
 import './index.less';
 import { getSliders, getLessons } from '../../api/home';
 interface IProps {
@@ -23,6 +23,7 @@ class HomeC extends React.Component<IProps> {
         this.props.getSliders();
         this.props.getLessons();
         loadMore(this.mainContent,this.props.getLessons);
+        downRefresh(this.mainContent,this.props.refreshLessons);
     }
     render () {
         let {category, setCategory, sliders, lessons,getLessons, refreshLessons} = this.props;
