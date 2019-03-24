@@ -37,6 +37,18 @@ export default function(state:Home = initState,action:Action){
                     loading: false
                 }
             };
+        case types.REFRESH_HOME_LESSONS:
+            return {
+                ...state,
+                lessons:{
+                    ...state.lessons,
+                    hasMore:action.payload.hasMore,
+                    // 直接覆盖list
+                    list: action.payload.list,
+                    offset: action.payload.list.length,
+                    loading: false
+                }
+            };
         case types.SET_HOME_LESSONS_LOADING:
             return {
                 ...state,

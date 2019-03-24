@@ -46,5 +46,27 @@ export default {
                 })
             }
         }
+    },
+    // 重新加载第一页的课程列表
+    refreshLessons(){
+        return function(dispatch,getState){
+            const {category,lessons:{offset,limit,loading,hasMore}} = getState().home;
+            // 如果正在加载中则不要再次请求数据
+            if (!loading) {
+                dispatch({
+                    type: types.SET_HOME_LESSONS_LOADING,
+                    payload: true
+                });
+                getLessons(category,0,limit).then(result=>{
+                    let {code,data} = result;
+                    if(code == 0){
+                        dispatch({
+                            type: types.REFRESH_HOME_LESSONS,
+                            payload: data
+                        });
+                    }
+                })
+            }
+        }
     }
 }

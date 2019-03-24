@@ -8,7 +8,8 @@ import {CSSTransition,TransitionGroup} from 'react-transition-group';
 const logo = require('../../../../../images/logo.png');
 interface IProps {
     category: string,
-    setCategory: any
+    setCategory: any,
+    refreshLessons: any,
 }
 interface IState {
     showList:boolean
@@ -26,8 +27,12 @@ export default class HomeHeader extends React.Component<IProps,IState> {
         const category = event.target.dataset.category;
         this.setState({
             showList: false
+        },()=>{
+            // 设置仓库中的新分类
+            this.props.setCategory(category);
+            this.props.refreshLessons();
         });
-        this.props.setCategory(category);
+        
     }
     render () {
         const {showList} = this.state;
@@ -39,9 +44,10 @@ export default class HomeHeader extends React.Component<IProps,IState> {
                     <div onClick={this.handleClick}>
                         {
                             showList ?
-                            (<i className="iconfont icon-uilist"></i>)
-                            :
                             (<i className="iconfont icon-guanbi"></i>)
+                            :
+                            (<i className="iconfont icon-uilist"></i>)
+                            
                         }
                     </div>
                 </div>

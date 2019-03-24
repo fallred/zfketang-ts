@@ -5,6 +5,7 @@ import {Store,Home} from '../../types';
 import actions from '../../store/actions/home';
 import HomeSwiper from '../../containers/Home/components/HomeSwiper';
 import HomeLessons from '../../containers/Home/components/HomeLessons';
+import { loadMore } from '../../utils';
 import './index.less';
 import { getSliders, getLessons } from '../../api/home';
 interface IProps {
@@ -13,22 +14,26 @@ interface IProps {
     setCategory:any,
     getSliders:any,
     getLessons:any,
-    lessons: any
+    lessons: any,
+    refreshLessons: any
 };
 class HomeC extends React.Component<IProps> {
-    componentWillMount(){
+    mainContent: any
+    componentDidMount(){
         this.props.getSliders();
         this.props.getLessons();
+        loadMore(this.mainContent,this.props.getLessons);
     }
     render () {
-        let {category, setCategory, sliders, lessons,getLessons} = this.props;
+        let {category, setCategory, sliders, lessons,getLessons, refreshLessons} = this.props;
         return (
             <React.Fragment>
                 <HomeHeader
                     category={category}
                     setCategory={setCategory}
+                    refreshLessons={refreshLessons}
                 />
-                <div className="main-content">
+                <div className="main-content" ref={element=>this.mainContent=element}>
                    <HomeSwiper
                         sliders={sliders}
                    />

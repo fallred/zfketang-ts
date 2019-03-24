@@ -8,3 +8,5 @@ export const SET_HOME_SLIDERS = 'SET_HOME_SLIDERS';
 export const SET_HOME_LESSONS = 'SET_HOME_LESSONS';
 // 设置首页课程的loading状态
 export const SET_HOME_LESSONS_LOADING = 'SET_HOME_LESSONS_LOADING';
+// 刷新课程列表
+export const REFRESH_HOME_LESSONS = 'REFRESH_HOME_LESSONS';
