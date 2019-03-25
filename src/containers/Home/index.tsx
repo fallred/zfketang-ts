@@ -20,10 +20,18 @@ interface IProps {
 class HomeC extends React.Component<IProps> {
     mainContent: any
     componentDidMount(){
-        this.props.getSliders();
-        this.props.getLessons();
+        if (this.props.sliders.length > 0) {
+            this.mainContent.scrollTop = sessionStorage.getItem('homeScrollTop');
+
+        } else {
+            this.props.getSliders();
+            this.props.getLessons();
+        }
         loadMore(this.mainContent,this.props.getLessons);
         downRefresh(this.mainContent,this.props.refreshLessons);
+    }
+    componentWillUnmount(){
+        sessionStorage.setItem('homeScrollTop', this.mainContent.scrollTop);
     }
     render () {
         let {category, setCategory, sliders, lessons,getLessons, refreshLessons} = this.props;

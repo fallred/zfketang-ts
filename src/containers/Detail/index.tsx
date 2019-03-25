@@ -12,7 +12,7 @@ export default class Detail extends React.Component<IProps> {
         const lesson = this.props.location.state;
         const {history} = this.props;
         // 如果状态里有，则直接渲染,如果没有则先获取id，然后重新调用接口获取数据进行渲染
-        let id = this.props.match.param.id;
+        let id = this.props.match.params.id;
         return lesson ? (
             <React.Fragment>
                 <div className="lesson-detail">

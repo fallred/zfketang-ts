@@ -10,7 +10,7 @@ export function loadMore(element:HTMLDivElement,callback:any):void{
             let clientHeight = element.clientHeight;
             let scrollHeight = element.scrollHeight;
             let scrollTop = element.scrollTop;
-            if (clientHeight + scrollTop >= scrollHeight) {
+            if (clientHeight + scrollTop + 20 >= scrollHeight) {
                 callback();
             }
         },500);
