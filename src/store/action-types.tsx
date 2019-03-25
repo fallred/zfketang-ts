@@ -10,3 +10,5 @@ export const SET_HOME_LESSONS = 'SET_HOME_LESSONS';
 export const SET_HOME_LESSONS_LOADING = 'SET_HOME_LESSONS_LOADING';
 // 刷新课程列表
 export const REFRESH_HOME_LESSONS = 'REFRESH_HOME_LESSONS';
+// 设置session
+export const SET_SESSION = 'SET_SESSION';

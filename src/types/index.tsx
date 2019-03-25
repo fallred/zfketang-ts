@@ -1,7 +1,8 @@
 export interface Store {
     counter1:Counter1,
     counter2:Counter2,
-    home: Home
+    home: Home,
+    session: Session
 }
 // let lesson = {
 //     id: 20,
@@ -12,7 +13,7 @@ export interface Store {
 //     price: '¥1000.00元',
 //     category:'vue'
 // };
-interface Lesson {
+export interface Lesson {
     id: number,
     title: string,
     video:string,
@@ -37,6 +38,15 @@ export interface Home {
         // 如果当前正在加载数据，则会有一个loading加载动画
         loading: false
     }
+}
+export interface Session{
+    user: {
+        username:string,
+        password:string,
+        id: number
+    },
+    success: string,
+    error: string
 }
 export interface Counter1 {
     number:number
