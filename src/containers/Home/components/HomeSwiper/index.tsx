@@ -1,26 +1,35 @@
 import * as React from 'react';
-import * as ReactSwipe from 'react-swipe';
+import SwiperItems from './SwiperItems';
+import SwiperDots from './SwiperDots';
+import './index.less';
 interface IProps{
     sliders: string[]
 }
-export default class HomeSwiper extends React.Component<IProps> {
+interface IState {
+    selectedIndex:number
+}
+export default class HomeSwiper extends React.Component<IProps,IState> {
+    state={selectedIndex:0}
+    changeIndex=(selectedIndex:number)=>{
+        // this.setState({
+        //     selectedIndex: index
+        // });
+        // console.log('index:',index);
+        // this.refs.swiperDots.changeIndex(selectedIndex);
+        (this.refs.swiperDots as any).changeIndex(selectedIndex);
+    }
     render() {
         let {sliders}=this.props;
         return (
-           sliders.length ? (
-            <ReactSwipe
-                className="carousel"
-                swipeOptions={{ continuous:true }}
-            >
-                {
-                    sliders.map((item:string,index:number)=>(
-                        <div key={index}>
-                            <img src={item} style={{width: '100%'}} />
-                        </div>
-                    ))
-                }
-            </ReactSwipe>
-           ) : null
+          <div className="home-swiper">
+                <SwiperItems
+                    sliders={sliders}
+                    changeIndex={(index)=>{
+                        this.changeIndex(index);
+                    }}
+                />
+                <SwiperDots ref="swiperDots" sliders={sliders} />
+          </div> 
         );
     }
 }

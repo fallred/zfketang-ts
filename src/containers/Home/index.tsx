@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import {Store,Home} from '../../types';
 import actions from '../../store/actions/home';
 import HomeSwiper from '../../containers/Home/components/HomeSwiper';
+import SwiperItems from '../Home/components/HomeSwiper/SwiperItems';
+import SwiperDots from '../Home/components/HomeSwiper/SwiperDots';
+
 import HomeLessons from '../../containers/Home/components/HomeLessons';
 import { loadMore,downRefresh } from '../../utils';
 import './index.less';
@@ -17,12 +20,15 @@ interface IProps {
     lessons: any,
     refreshLessons: any
 };
-class HomeC extends React.Component<IProps> {
+interface IState {
+    selectedIndex:number
+}
+class HomeC extends React.Component<IProps,IState> {
+    state={selectedIndex:0}
     mainContent: any
     componentDidMount(){
         if (this.props.sliders.length > 0) {
             this.mainContent.scrollTop = sessionStorage.getItem('homeScrollTop');
-
         } else {
             this.props.getSliders();
             this.props.getLessons();
@@ -32,6 +38,11 @@ class HomeC extends React.Component<IProps> {
     }
     componentWillUnmount(){
         sessionStorage.setItem('homeScrollTop', this.mainContent.scrollTop);
+    }
+    changeSelectedIndex=(index:number)=>{
+        this.setState({
+            selectedIndex: index
+        });
     }
     render () {
         let {category, setCategory, sliders, lessons,getLessons, refreshLessons} = this.props;
@@ -43,7 +54,11 @@ class HomeC extends React.Component<IProps> {
                     refreshLessons={refreshLessons}
                 />
                 <div className="main-content" ref={element=>this.mainContent=element}>
-                   <HomeSwiper
+                    {/* <div className="home-swiper">
+                        <SwiperItems sliders={sliders} changeSelectedIndex={this.changeSelectedIndex}/>
+                        <SwiperDots sliders={sliders} selectedIndex={this.state.selectedIndex}/>
+                    </div>  */}
+                    <HomeSwiper
                         sliders={sliders}
                    />
                    <HomeLessons
